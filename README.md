@@ -1,4 +1,5 @@
 # DAJLAK-BackEnd
+
 REST API를 이용한 Django 웹 서버 개발
 
 # 규칙
@@ -26,7 +27,7 @@ REST API를 이용한 Django 웹 서버 개발
 
 1. 첫글자는 대문자
 2. 커밋메시지 예시
-  ex) [Feat] 게시물 기능
+   ex) [Feat] 게시물 기능
 
 ---
 
@@ -34,12 +35,12 @@ REST API를 이용한 Django 웹 서버 개발
 
 - 브랜치의 이름은 feature/ 기능 으로 설정한다.
 
-    ex) feature/login
+  ex) feature/login
 
 - pull request의 경우에는 스프린트 백로그를 기준으로 생성하고 제목은 커밋 제목
 
-
 ## 브랜치 전략
+
 ```
 - master : 라이브 서버에 제품으로 출시되는 브랜치.
 - develop : 다음 출시 버전을 대비하여 개발하는 브랜치.
@@ -48,3 +49,26 @@ REST API를 이용한 Django 웹 서버 개발
 - hotfix : master 브랜치에서 발생한 버그를 수정하는 브랜치.
 ```
 
+- [ ] See
+- [ ] See Profile
+- [ ] Create Account
+- [ ] See Profile
+- [ ] Edit Profile
+
+- [ ] See 북마크리스트
+- [ ] Add 달작 to 북마크리스트
+
+- [ ] List 달작
+- [ ] See 달작
+- [ ] Create 달작
+- [ ] Edit 달작
+- [ ] Delete 달작
+- [ ] Filter 달작
+- [ ] Filter 달작 to 조회순
+
+- [ ] See 커뮤니티
+- [ ] Create 커뮤니티
+- [ ] Edit 커뮤니티
+- [ ] Delete 커뮤니티
+- [ ] Filter 커뮤니티
+- [ ] Search 커뮤니티
