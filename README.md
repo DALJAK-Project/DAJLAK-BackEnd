@@ -81,3 +81,25 @@ REST API를 이용한 Django 웹 서버 개발
 
 1. 폴더명 뒤에 무조건 s 붙이기
 2. 모델 사용할때 timestampedmodel 상속하기
+git remote add origin https://userName:passWord@github.com/myRepository
+
+git config --system --unset credential.helper​
+git config credential.helper store
+
+출처: https://memostack.tistory.com/199 [MemoStack]
+
+git remote set-url origin "https://github-username@github.com/github-username/github-repository-name.git
+
+출처: https://beagle-dev.tistory.com/244 [언젠간 되어있겠지]DALJAK-Project
+/
+DALJAK-BackEnd
+https://dongyu-youn@github.com/dongyu-youn/https://github.com/DALJAK-Project/DALJAK-BackEnd
+
+
+https://github.com/DALJAK-Project/DALJAK-BackEnd
+
+git remote set-url origin https://dongyu-youn@github.com/dongyu-youn/https://github.com/DALJAK-Project/DALJAK-BackEnd.git
+
+https://github.com/DALJAK-Project/DAJLAK-BackEnd
+
+git remote set-url origin https://github.com/DALJAK-Project/DAJLAK-BackEnd

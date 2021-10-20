@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+
 # Create your models here.
 class User(AbstractUser): 
 
@@ -9,7 +10,9 @@ class User(AbstractUser):
     avatar = models.ImageField(upload_to="avatars", blank=True) 
     superhost = models.BooleanField(default=False)
     #북마크리스트
-    # favs = models.ManyToManyField("달작.달작", related_name="favs")
+    favs = models.ManyToManyField("posts.Post", related_name="favs")
 
 
 
+# o 뭐해야하지?? 일단 코멘트를 post로 옮겼고 북마크 기능도 옮겨야해
+# o 지금은? user에 fav를 생성하는 이유눈? 클릭하면 fav데이터를 받아야하니깐

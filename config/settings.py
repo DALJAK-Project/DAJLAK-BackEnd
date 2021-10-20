@@ -46,7 +46,7 @@ PROJECT_APPS = [
     "communities.apps.CommunitiesConfig",
     "categories.apps.CategoriesConfig",
     # "bookmarks.apps.BookmarksConfig",
-    "comments.apps.CommentsConfig",
+    # "comments.apps.CommentsConfig",
 ]
 
 THIRD_PARTY_APPS = [
