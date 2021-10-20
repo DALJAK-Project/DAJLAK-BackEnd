@@ -72,3 +72,12 @@ REST API를 이용한 Django 웹 서버 개발
 - [ ] Delete 커뮤니티
 - [ ] Filter 커뮤니티
 - [ ] Search 커뮤니티
+
+- [ ] See 리뷰
+- [ ] Create 리뷰
+- [ ] Edit 리뷰
+- [ ] Delete 리뷰
+- [ ] Search 리뷰
+
+1. 폴더명 뒤에 무조건 s 붙이기
+2. 모델 사용할때 timestampedmodel 상속하기
