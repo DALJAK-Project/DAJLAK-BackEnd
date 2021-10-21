@@ -44,7 +44,8 @@ PROJECT_APPS = [
     "users.apps.UsersConfig",
     "posts.apps.PostsConfig",
     "communities.apps.CommunitiesConfig",
-    "categories.apps.CategoriesConfig",
+    "core.apps.CoreConfig",
+    # "categories.apps.CategoriesConfig",
     # "bookmarks.apps.BookmarksConfig",
     # "comments.apps.CommentsConfig",
 ]

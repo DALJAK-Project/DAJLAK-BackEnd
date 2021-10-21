@@ -54,6 +54,20 @@ class Comment(TimeStampedModel):
     class Meta:
         db_table = 'comments'
 
+
+
+class Photo(TimeStampedModel):
+
+    file = models.ImageField()
+    post = models.ForeignKey(
+        "posts.Post", related_name="photos", on_delete=models.CASCADE
+    )
+    caption = models.CharField(max_length=140)
+
+    def __str__(self):
+        return self.room.name
+
+
 # o 여기서 해야할것은?
 
 # o 카테고리 

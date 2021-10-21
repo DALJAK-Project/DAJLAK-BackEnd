@@ -21,3 +21,10 @@ class CommentAdmin(admin.ModelAdmin):
        "user",
     )
 
+@admin.register(models.Photo)
+class PhotoAdmin(admin.ModelAdmin):
+    list_display = (
+     
+    )
+
+
