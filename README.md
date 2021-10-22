@@ -58,11 +58,11 @@ REST API를 이용한 Django 웹 서버 개발
 - [ ] See 북마크리스트
 - [ ] Add 달작 to 북마크리스트
 
-- [ ] List 달작
-- [ ] See 달작
-- [ ] Create 달작
-- [ ] Edit 달작
-- [ ] Delete 달작
+- [x] List 달작
+- [x] See 달작
+- [x] Create 달작
+- [x] Edit 달작
+- [x] Delete 달작
 - [ ] Filter 달작
 - [ ] Filter 달작 to 조회순
 
@@ -81,7 +81,7 @@ REST API를 이용한 Django 웹 서버 개발
 
 1. 폴더명 뒤에 무조건 s 붙이기
 2. 모델 사용할때 timestampedmodel 상속하기
-git remote add origin https://userName:passWord@github.com/myRepository
+   git remote add origin https://userName:passWord@github.com/myRepository
 
 git config --system --unset credential.helper​
 git config credential.helper store
@@ -95,7 +95,6 @@ git remote set-url origin "https://github-username@github.com/github-username/gi
 DALJAK-BackEnd
 https://dongyu-youn@github.com/dongyu-youn/https://github.com/DALJAK-Project/DALJAK-BackEnd
 
-
 https://github.com/DALJAK-Project/DALJAK-BackEnd
 
 git remote set-url origin https://dongyu-youn@github.com/dongyu-youn/https://github.com/DALJAK-Project/DALJAK-BackEnd.git
@@ -103,3 +102,5 @@ git remote set-url origin https://dongyu-youn@github.com/dongyu-youn/https://git
 https://github.com/DALJAK-Project/DAJLAK-BackEnd
 
 git remote set-url origin https://github.com/DALJAK-Project/DAJLAK-BackEnd
+
+git checkout -b feature/genric->apiview develop

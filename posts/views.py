@@ -7,6 +7,8 @@ from posts.models import Post, Comment
 from rest_framework import status
 from rest_framework.views import APIView
 
+from users.UserSerializers import ReadSerializer
+
 # o post기능에 좀더 디테일을 추가하기 위해서
 # o Rooms
 class WritePostList(APIView): 
@@ -48,6 +50,7 @@ class PostDetail(APIView):
             return Response(serializer)
         except Post.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
+            
     def put(self, request, pk):
         post = Post.objects.get(pk=pk)
         if post is not None:
@@ -55,9 +58,10 @@ class PostDetail(APIView):
                 return Response(status=status.HTTP_403_FORBIDDEN)
             serializer = WritePostSerializer(post, data=request.data, partial=True)
             if serializer.is_valid():
-                serializer.save()
-             
-            return Response()
+                post = serializer.save()
+                return Response(ReadPostSerializer(post).data)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response(status=status.HTTP_404_NOT_FOUND)
 

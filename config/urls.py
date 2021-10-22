@@ -26,5 +26,6 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('v1/', include('posts.urls')),
+    path("v1/users", include("users.urls")),
     path("", RedirectView.as_view(url='/admin/', permanent=True)),  # 기본주소 입력했을 때, /admin로 넘겨줌.
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
