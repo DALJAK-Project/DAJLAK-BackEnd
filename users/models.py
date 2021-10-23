@@ -7,18 +7,17 @@ class User(AbstractUser):
     # 프로필 
     avatar = models.ImageField(upload_to="avatars", blank=True) 
     superhost = models.BooleanField(default=False)
+    favs = models.ManyToManyField("posts.Post", related_name="favs")
+    bio = models.TextField(max_length=300)
 
-    # 북마크 리스트
-    # favs = models.ManyToManyField("posts.Post", related_name="favs")
 
+# class Bookmark(models.Model):
+#     user = models.ForeignKey('User', on_delete=models.CASCADE)
+#     post = models.ForeignKey('posts.Post', on_delete=models.CASCADE)
+#     active = models.BooleanField(default=False)
 
-class Bookmark(models.Model):
-    user = models.ForeignKey('User', on_delete=models.CASCADE)
-    post = models.ForeignKey('posts.Post', on_delete=models.CASCADE)
-    active = models.BooleanField(default=False)
-
-    class Meta:
-        db_table = "bookmark"
+#     class Meta:
+#         db_table = "bookmark"
 
 
 

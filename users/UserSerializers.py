@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from users.models import User, Bookmark
+from users.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -16,6 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class ReadSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = User
         fields = (
@@ -27,6 +28,7 @@ class ReadSerializer(serializers.ModelSerializer):
             "is_superuser",
             "is_staff",
             "date_joined",
+            "favs",
             )
 
 class WriteUserSerializer(serializers.ModelSerializer):

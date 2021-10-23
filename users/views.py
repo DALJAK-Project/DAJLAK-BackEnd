@@ -6,7 +6,7 @@ from rest_framework import status
 from .models import User
 from users.UserSerializers import ReadSerializer, WriteUserSerializer
 from rest_framework.permissions import IsAuthenticated
-
+from posts.PostSerializers import PostSerializer
 
 
 class MeView(APIView):
@@ -33,3 +33,17 @@ def user_detail(request, pk):
         return Response(ReadSerializer(user).data)
     except User.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+
+class BookmarksView(APIView):
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        serializer = PostSerializer(user.favs.all(), many=True).data
+        return Response(serializer)
+
+    def put(self, request):
+        pass
