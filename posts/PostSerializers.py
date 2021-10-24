@@ -16,4 +16,3 @@ class PostSerializer(serializers.ModelSerializer):
         fields = ('title', 'category', 'user', 'desc', 'image', 'thumnail_img', 'views', 'comments')
 
 
-
