@@ -31,6 +31,7 @@ class ReadSerializer(serializers.ModelSerializer):
             "favs",
             )
 
+
 class WriteUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User

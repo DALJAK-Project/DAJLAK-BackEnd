@@ -1,4 +1,3 @@
-from rest_framework import permissions, serializers
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -11,7 +10,7 @@ from posts.PostSerializers import PostSerializer
 
 class MeView(APIView):
 
-    permissions_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         
@@ -33,7 +32,6 @@ def user_detail(request, pk):
         return Response(ReadSerializer(user).data)
     except User.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
-
 
 
 class BookmarksView(APIView):

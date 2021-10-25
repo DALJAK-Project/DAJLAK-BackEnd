@@ -7,8 +7,7 @@ class User(AbstractUser):
     # 프로필 
     avatar = models.ImageField(upload_to="avatars", blank=True) 
     superhost = models.BooleanField(default=False)
-    favs = models.ManyToManyField("posts.Post", related_name="favs")
-    bio = models.TextField(max_length=300)
+    favs = models.ManyToManyField("posts.Post", related_name="favs", blank=True)
 
 
 # class Bookmark(models.Model):
