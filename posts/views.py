@@ -6,7 +6,7 @@ from posts.PostSerializers import PostSerializer, CommentSerializer
 from posts.models import Post, Comment
 from rest_framework import status
 from rest_framework.views import APIView
-from users.UserSerializers import ReadSerializer
+
 
 # o post기능에 좀더 디테일을 추가하기 위해서
 # o Rooms
@@ -72,11 +72,6 @@ class PostDetail(APIView):
             return Response(status=status.HTTP_200_OK)
         else:
             return Response(status=status.HTTP_404_NOT_FOUND)
-
-
-
-
-
 
 
 

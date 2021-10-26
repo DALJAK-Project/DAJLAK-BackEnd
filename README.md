@@ -50,10 +50,9 @@ REST API를 이용한 Django 웹 서버 개발
 ```
 
 - [ ] See
-- [ ] See Profile
+- [x] See Profile
 - [ ] Create Account
-- [ ] See Profile
-- [ ] Edit Profile
+- [x] Edit Profile
 
 - [ ] See 북마크리스트
 - [ ] Add 달작 to 북마크리스트
@@ -83,24 +82,7 @@ REST API를 이용한 Django 웹 서버 개발
 2. 모델 사용할때 timestampedmodel 상속하기
    git remote add origin https://userName:passWord@github.com/myRepository
 
-git config --system --unset credential.helper​
-git config credential.helper store
+Error
 
-출처: https://memostack.tistory.com/199 [MemoStack]
-
-git remote set-url origin "https://github-username@github.com/github-username/github-repository-name.git
-
-출처: https://beagle-dev.tistory.com/244 [언젠간 되어있겠지]DALJAK-Project
-/
-DALJAK-BackEnd
-https://dongyu-youn@github.com/dongyu-youn/https://github.com/DALJAK-Project/DALJAK-BackEnd
-
-https://github.com/DALJAK-Project/DALJAK-BackEnd
-
-git remote set-url origin https://dongyu-youn@github.com/dongyu-youn/https://github.com/DALJAK-Project/DALJAK-BackEnd.git
-
-https://github.com/DALJAK-Project/DAJLAK-BackEnd
-
-git remote set-url origin https://github.com/DALJAK-Project/DAJLAK-BackEnd
-
-git checkout -b feature/genric->apiview develop
+1. 북마크 put 안됨
+2. post도 마찬가지

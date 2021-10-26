@@ -16,13 +16,17 @@ class PostSerializer(serializers.ModelSerializer):
 
     user = UserSerializer()
 
+    
+    
     class Meta:
         model = Post
-        fields = ('title', 'category', 'user', 'desc', 'image', 'thumnail_img', 'views', 'comments')
-        read_only_fields = ("user", "created", "updated")
+        exclude = ('image', )
+        read_only_fields = ('id',    )
         
     def create(self, validated_data):
         return Post.objects.create(**validated_data)
+
+    # o this fields read+write
 
     
 
