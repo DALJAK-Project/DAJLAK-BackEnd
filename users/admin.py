@@ -1,4 +1,6 @@
 from django.contrib import admin
+
+from communities.admin import LikeCommunityInline, BookmarkCommunityInline
 from . import models
 from django.contrib.auth.admin import UserAdmin
 
@@ -10,7 +12,7 @@ from django.contrib.auth.admin import UserAdmin
 
 @admin.register(models.User)
 class UserAdmin(admin.ModelAdmin):
-    # inlines = (BookmarkInline, )
+    inlines = (LikeCommunityInline, BookmarkCommunityInline)
     fieldsets = UserAdmin.fieldsets + (
         ("Custom Profile", {
             "fields": (

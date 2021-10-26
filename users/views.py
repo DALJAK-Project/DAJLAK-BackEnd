@@ -45,3 +45,16 @@ class BookmarksView(APIView):
 
     def put(self, request):
         pass
+
+
+# class BookmarksView_Community(APIView):
+#
+#     permission_classes = [IsAuthenticated]
+#
+#     def get(self, request):
+#         user = request.user
+#         serializer = PostSerializer(user.favs_community.all(), many=True).data
+#         return Response(serializer)
+#
+#     def put(self, request):
+#         pass

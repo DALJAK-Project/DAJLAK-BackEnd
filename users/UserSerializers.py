@@ -29,6 +29,7 @@ class ReadSerializer(serializers.ModelSerializer):
             "is_staff",
             "date_joined",
             "favs",
+            # "favs_community",
             )
 
 

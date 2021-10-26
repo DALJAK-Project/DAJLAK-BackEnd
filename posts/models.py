@@ -42,7 +42,7 @@ class Post(TimeStampedModel):
 
 
 class Comment(TimeStampedModel):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments', null=True)
+    post = models.ForeignKey(Post, on_delete=models.PROTECT, related_name='comments', null=True)
     desc = models.TextField(max_length=300)
     user = models.ForeignKey(
         "users.User", on_delete=models.PROTECT, related_name="users"
@@ -53,7 +53,6 @@ class Comment(TimeStampedModel):
 
     class Meta:
         db_table = 'comments'
-
 
 
 class Photo(TimeStampedModel):
