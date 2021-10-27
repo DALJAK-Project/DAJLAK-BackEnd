@@ -9,6 +9,7 @@ urlpatterns = [
     path("me/", views.MeView.as_view()), 
     path("me/bookmarks", views.BookmarksView.as_view()),     
     path("/<int:pk>", views.user_detail),
+ 
 ]
 
 

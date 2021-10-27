@@ -17,6 +17,7 @@ from django.contrib.auth import authenticate
 
 
 
+
 class UserView(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
@@ -88,6 +89,7 @@ def login(request):
     if not username or not password:
         return Response(status=status.HTTP_400_BAD_REQUEST)
     user = authenticate(username=username, password=password)
+    # o 토큰을 받아서 그 토큰으로 user찾고 그 유저를 리턴
     if user is not None:
         encoded_jwt = jwt.encode(
             {"pk": user.pk}, settings.SECRET_KEY, algorithm="HS256"
