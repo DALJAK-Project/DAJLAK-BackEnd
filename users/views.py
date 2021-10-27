@@ -2,6 +2,10 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework import status
+
+from communities.CommunitySerializers import CommunitySerializer
+from communities.models import Community
+from posts.models import Post
 from .models import User
 from users.UserSerializers import ReadSerializer, WriteUserSerializer
 from rest_framework.permissions import IsAuthenticated
@@ -36,7 +40,7 @@ def user_detail(request, pk):
 
 class BookmarksView(APIView):
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]  # 특정 유저일때
 
     def get(self, request):
         user = request.user
@@ -44,17 +48,42 @@ class BookmarksView(APIView):
         return Response(serializer)
 
     def put(self, request):
-        pass
+        pk = request.data.get("pk", None)
+        user = request.user
+        if pk is not None:
+            try:
+                post = Post.objects.get(pk=pk)
+                if post in user.favs.all():
+                    user.favs.remove(post)
+                else:
+                    user.favs.add(post)
+                return Response()
+            except Post.DoesNotExist:
+                pass
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
-# class BookmarksView_Community(APIView):
-#
-#     permission_classes = [IsAuthenticated]
-#
-#     def get(self, request):
-#         user = request.user
-#         serializer = PostSerializer(user.favs_community.all(), many=True).data
-#         return Response(serializer)
-#
-#     def put(self, request):
-#         pass
+class BookmarksCommunityView(APIView):
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        serializer = CommunitySerializer(user.favs_community.all(), many=True).data
+        return Response(serializer)
+
+    def put(self, request):
+        pk = request.data.get("pk", None)
+        user = request.user
+        if pk is not None:
+            try:
+                community = Community.objects.get(pk=pk)
+                if community in user.favs_community.all():
+                    user.favs_community.remove(community)
+                else:
+                    user.favs.add(community)
+                return Response()
+            except Community.DoesNotExist:
+                pass
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+

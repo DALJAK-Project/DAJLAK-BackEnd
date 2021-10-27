@@ -7,19 +7,9 @@ class CommentCommunityInline(admin.TabularInline):
     extra = 1
 
 
-class LikeCommunityInline(admin.TabularInline):
-    model = models.Like
-    extra = 1
-
-
-class BookmarkCommunityInline(admin.TabularInline):
-    model = models.Bookmark_community
-    extra = 1
-
-
 @admin.register(models.Community)
 class CommunityAdmin(admin.ModelAdmin):
-    inlines = (CommentCommunityInline, LikeCommunityInline, BookmarkCommunityInline)
+    inlines = (CommentCommunityInline, )
     list_display = (
         "title", "user", "views",
     )

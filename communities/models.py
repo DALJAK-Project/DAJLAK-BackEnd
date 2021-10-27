@@ -8,7 +8,6 @@ class Community(TimeStampedModel):
     desc = models.TextField(max_length=300)
     image = models.ImageField(blank=True)
     views = models.PositiveIntegerField(default=0, verbose_name='조회수')
-    # like = models.ManyToManyField('users.User', related_name='likes')
     user = models.ForeignKey(
         'users.User', on_delete=models.CASCADE, related_name="community"
     )
@@ -29,18 +28,6 @@ class Comment_community(TimeStampedModel):
 
     class Meta:
         db_table = 'comments_community'
-
-
-class Like(models.Model):
-    community = models.ForeignKey('Community', on_delete=models.CASCADE)
-    user = models.ForeignKey('users.User', on_delete=models.CASCADE)
-
-    def count_likes(self):
-        return self.user.count()
-
-class Bookmark_community(models.Model):
-    community = models.ForeignKey('Community', on_delete=models.CASCADE)
-    user = models.ForeignKey('users.User', on_delete=models.CASCADE)
 
 
 class Photo(TimeStampedModel):
