@@ -30,6 +30,11 @@ class Post(TimeStampedModel):
     user = models.ForeignKey(
         "users.User", on_delete=models.CASCADE, related_name="posts"
     )
+      
+
+       
+        
+         
     # comments = models.ForeignKey(
     #     "comments.Comment", on_delete=models.CASCADE, related_name="poco"
     # )

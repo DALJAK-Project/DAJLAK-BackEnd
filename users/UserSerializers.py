@@ -9,7 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = (
+        fields = [
             "id",
             "username",
             "first_name",
@@ -17,9 +17,9 @@ class UserSerializer(serializers.ModelSerializer):
             "email",
             "avatar",
             "superhost",
-            "password",
-            )
-        read_only_fields = ("id", "superhost", "avatar")
+            "password"
+        ]
+        read_only_fields = ["id", "superhost", "avatar"]
 
     def validate_first_name(self, value):
         return value.upper()

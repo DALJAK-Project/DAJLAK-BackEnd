@@ -14,17 +14,15 @@ class PostSerializer(serializers.ModelSerializer):
 
     comments = CommentSerializer(many=True, required=False)  # read_only=True
 
-    user = UserSerializer()
+    user = UserSerializer(read_only=True)
     is_bookmark = serializers.SerializerMethodField()
     
     
     class Meta:
         model = Post
-        exclude = ('image', )
-        read_only_fields = ('id',    )
+        fields = '__all__'
+        read_only_fields = ('id', 'thumnail_img', 'img')
         
-    def create(self, validated_data):
-        return Post.objects.create(**validated_data)
 
     def get_is_bookmark(self, obj):
         request = self.context.get("request")
@@ -33,8 +31,9 @@ class PostSerializer(serializers.ModelSerializer):
             if user.is_authenticated:
                 return obj in user.favs.all()
         return False
-
-    # o this fields read+write
-
     
+    def create(self, validated_data):
+        print(self.context.get("request").user)
+        
+        
 

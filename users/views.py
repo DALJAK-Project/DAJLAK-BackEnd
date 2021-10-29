@@ -31,12 +31,15 @@ class UserView(APIView):
 
 class MeView(APIView):
 
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        return Response(UserSerializer(request.user).data)
+        if request.user.is_authenticated:
+            return Response(UserSerializer(request.user).data)
 
     def put(self, request):
+        if request.user.is_authenticated:
+            return Response(UserSerializer(request.user).data)
         serializer = UserSerializer(request.user, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
