@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.filters import SearchFilter
+from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from posts.PostSerializers import PostSerializer, CommentSerializer
 from posts.models import Post, Comment
@@ -74,21 +75,56 @@ class PostDetail(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
 
+class CommentList(APIView):
+    def get(self, request, post_id, *args, **kwargs):
+        comments = Comment.objects.filter(post=post_id)
+        serializer_class = CommentSerializer(comments, many=True).data
+        return Response(serializer_class)
+
+    def post(self, request, post_id):
+        if not request.user.is_authenticated:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+        serializer = CommentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(user=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class CommentUserList(APIView):
+    def get(self, request, user_id, *args, **kwargs):
+        comments = Comment.objects.filter(user=user_id)
+        serializer_class = CommentSerializer(comments, many=True).data
+        return Response(serializer_class)
 
 
+class CommentDetail(APIView):
+    def get_object(self, pk):  # 존재하는 인스턴스인지 판단하고, 존재한다면 그것을 리턴함.
+        return get_object_or_404(Comment, pk=pk)
 
+    def get(self, request, pk):
+        comment = self.get_object(pk)
+        serializer = CommentSerializer(comment)
+        return Response(serializer.data)
 
+    def put(self, request, pk):
+        comment = self.get_object(pk)
+        if comment.user != request.user:
+            return Response(status=status.HTTP_403_FORBIDDEN)
+        serializer = CommentSerializer(comment, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save(user=request.user)
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class CommentList(generics.ListCreateAPIView):
-    queryset = Comment.objects.all()
-    serializer_class = CommentSerializer
+    def delete(self, request, pk):
+        comment = self.get_object(pk)
+        if comment.user != request.user:
+            return Response(status=status.HTTP_403_FORBIDDEN)
+        comment.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
-
-class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Comment.objects.all()
-    serializer_class = CommentSerializer
 
 
 

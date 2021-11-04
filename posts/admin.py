@@ -11,7 +11,7 @@ class CommentInline(admin.TabularInline):
 class PostAdmin(admin.ModelAdmin):
     inlines = (CommentInline, )
     list_display = (
-        "title", "category", "user", "views",
+        "id", "title", "category", "user", "views",
     )
 
 

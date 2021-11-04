@@ -1,8 +1,8 @@
-from posts.models import Post, Comment
+from communities.models import Community
 from rest_framework import serializers
 
 
 class CommunitySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Comment
+        model = Community
         fields = '__all__'
