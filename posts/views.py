@@ -7,15 +7,23 @@ from posts.PostSerializers import PostSerializer, CommentSerializer
 from posts.models import Post, Comment
 from rest_framework import status
 from rest_framework.views import APIView
-from users.UserSerializers import ReadSerializer
+from rest_framework.decorators import api_view
+from rest_framework.pagination import PageNumberPagination
+
+
+class OwnPagination(PageNumberPagination):
+    page_size = 20
+
 
 # o post기능에 좀더 디테일을 추가하기 위해서
 # o Rooms
 class WritePostList(APIView): 
     def get(self, request):
+        paginator = OwnPagination()
         posts = Post.objects.all()
-        serializer_class = PostSerializer(posts, many=True).data
-        return Response(serializer_class)
+        results = paginator.paginate_queryset(posts, request)
+        serializer = PostSerializer(results, many=True, context={"request": request})
+        return paginator.get_paginated_response(serializer.data)
 
     def post(self, request):
         if not request.user.is_authenticated:
@@ -100,7 +108,7 @@ class CommentUserList(APIView):
 
 
 class CommentDetail(APIView):
-    def get_object(self, pk):  # 존재하는 인스턴스인지 판단하고, 존재한다면 그것을 리턴함.
+    def get_object(self, pk):
         return get_object_or_404(Comment, pk=pk)
 
     def get(self, request, pk):
@@ -126,5 +134,41 @@ class CommentDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+@api_view(["GET"])
+def post_search(request):
 
+    # 검색 필터 -> 제목 학과 
+    title = request.GET.get("title", None)
+    # 못찾겠으면 none
+    desc = request.GET.get("desc", None)
+    tag = request.GET.get("tag", None)
+   
+    category = request.GET.get("category", None)
+    views = request.GET.get("views", None)
+    filter_kwargs = {}  
+    if views is not None:
+        filter_kwargs["views__lt"] = views
+    if title is not None:
+        filter_kwargs["title__exact"] = title
+    if desc is not None:
+        filter_kwargs["desc__exact"] = desc
+    if tag is not None:
+        filter_kwargs["tag__exact"] = tag
+    if category is not None:
+        filter_kwargs["category__exact"] = category
+        
+        # o 사용자가 입력한단어가 있을경우
+        # filter_kwargs["desc"] = desc
+        # filter_kwargs["user"] = user
+        # filter_kwargs["tag"] = tag
+        # filter_kwargs["category"] = category
+    try:
+        posts = Post.objects.filter(**filter_kwargs)
+    except ValueError:
+        posts = Post.objects.all()
 
+    paginator = OwnPagination()
+    
+    results = paginator.paginate_queryset(posts, request)
+    serializer = PostSerializer(results, many=True)
+    return paginator.get_paginated_response(serializer.data)

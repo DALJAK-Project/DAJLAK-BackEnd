@@ -19,7 +19,7 @@ class UserAdmin(admin.ModelAdmin):
                 "favs_community"
             )
         }),
-    )
+    )   
 
     list_display = UserAdmin.list_display + ()
 
